@@ -10,7 +10,7 @@ order: 4
 # MIT License
 ---
 
-<d align="center">
+<div align="center">
 [![1500x420](https://media.giphy.com/media/iIqmM5tTjmpOB9mpbn/giphy.gif)](https://github.com/fevziomurtekin)
 
 
