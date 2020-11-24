@@ -10,14 +10,12 @@ order: 4
 # MIT License
 ---
 
-<div align="center">
+
 [![1500x420](https://media.giphy.com/media/iIqmM5tTjmpOB9mpbn/giphy.gif)](https://github.com/fevziomurtekin)
 
 
+### Hi there 👋 
 
-Merhaba! 👋
-
-Kotlin, Java, Flutter ile mobil uygulamalar ve kütüphaneler geliştiren bir yazılım geliştiriciyim. Kitap okumayı ve sporun her türlü dalını izlemekten keyif alıyorum. Beni twitter/instagram/medium/goodreads : **fevziomurtekin** kullanıcı adıyla takip edebilir, merak ettiğiniz veya danışmak istediğiniz herhangi bir konuda bu platformlardan ulaşabilirsiniz.
+I’m mainly interested in Mobile Application Development, Kotlin, Flutter, Java, Android Library, Book. For random bits follow me on twitter/instagram/medium/goodreads : **@fevziomurtekin**. For more info about my professional career, visit my [Linkedin](https://www.linkedin.com/in/fevziomurtekin) profile.
 
 
-</div>
