@@ -10,8 +10,9 @@ order: 4
 # MIT License
 ---
 
-<p align="center">
+<d align="center">
 [![1500x420](https://media.giphy.com/media/iIqmM5tTjmpOB9mpbn/giphy.gif)](https://github.com/fevziomurtekin)
+
 
 
 Merhaba! 👋
