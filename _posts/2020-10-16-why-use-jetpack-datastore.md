@@ -14,8 +14,6 @@ image: https://miro.medium.com/max/1273/1*9AiTGrsS8XxmG6yjPxlXyQ.png
 ## What is Jetpack Datastore? Why should we use Jetpack Datastore?
 
 ---
-[![1800x640](https://miro.medium.com/max/1273/1*9AiTGrsS8XxmG6yjPxlXyQ.png)](https://github.com/fevziomurtekin)
-
 
 Hello everyone,
 In this article, I'll talk about the DataStore structure, which is one of the Android Jetpack components. I'll explain in code by giving examples with DataStore Preferences.
@@ -40,172 +38,117 @@ So why should we use this structure when there is SharedPreferences? Let's expla
 
 [![1800x640](https://miro.medium.com/max/1042/1*ZuiiBUVP2LD1leAOAQ9wDg.png)](https://github.com/fevziomurtekin)
 
+If we look at the this in more detail, there are two different type of structure. These;
+
+* **Preferences Datastore**, this type stores data in *key/value* pairs like SharedPreferences but doesn't provde any type of security. 
+* **Proto Datastore** this type stores data as *objects*, 
+
+We can provide storage using both types. But Proto provides type security. You also define a schema when using **Proto**.
+
+You must define this schema under index `src/main/proto/directory`. This diagram contains the types of objects you'll use.
+
+More detailed information can be found [at](https://developer.android.com/topic/libraries/architecture/datastore).
+
+
+Let's look at its setup and usage now.
+
 ....
 
-### Ordered list
-
-1. first item
-2. second item
-3. third item
-
-### Unordered list
-
-- item 1
-	- sub item 1
-	- sub item 2
-
-- item 2
-
-## Block Quote
-
-> This line to shows the Block Quote.
-
-## Tables
-
-| Company                      | contact          | Country |
-|:-----------------------------|:-----------------|--------:|
-| Alfreds Futterkiste          | Maria Anders     | Germany |
-| Island Trading               | Helen Bennett    | UK      |
-| Magazzini Alimentari Riuniti | Giovanni Rovelli | Italy   |
-
-## Link
-
-<http://127.0.0.1:4000>
+### Datastore Preferences Setup and Usage
 
 
-## Footnote
+```gradle
 
-Click the hook will locate the footnote[^footnote].
+  dependencies {
+    // Preferences DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0-alpha02"
 
+    // Proto DataStore
+    implementation "androidx.datastore:datastore-core:1.0.0-alpha02"
+}
 
-## Images
+```
 
-By default, the image is centered and the image caption can be displayed at the bottom:
+We've added our Datastore libraries to project by including our dependencies in `build.gradle`.
 
-![Desktop View](/assets/img/sample/mockup.png)
-_Full screen width and center alignment_
+Firstly we created class in the Datastore Preferences structure and created the data writing and reading fuctions that we'll use.
 
-You can change the size of the picture:
+```kotlin
+class BasePreferences(private val context: Context) {
 
-![Desktop View](/assets/img/sample/mockup.png){: width="400"}
-_400px image width_
-
-In addition, you can use class `normal` , `left` and `right` to specify the image position (but in these case, the image caption is prohibited), for example:
-
-- Normal position
+    companion object{
+        val BASE_KEY = preferencesKey<String>(name = "key")
+    }
   
-  ![Desktop View](/assets/img/sample/mockup.png){: width="350" class="normal"}
+    private val dataStore: DataStore<Preferences> = context.createDataStore(
+        name = "pref"
+    )
 
-- Float to the left
+    suspend fun saveValue(value: String){
+        dataStore.edit { preferences ->
+            preferences[BASE_KEY] = value
+        }
+    }
 
-  ![Desktop View](/assets/img/sample/mockup.png){: width="240" class="left"}
-  "A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space."
-
-- Float to the right
-
-  ![Desktop View](/assets/img/sample/mockup.png){: width="240" class="right"}
-  "A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space. A repetitive and meaningless text is used to fill the space."
-
-## Inline code
-
-This is an example of `Inline Code`.
-
-## Mathematics
-
-The mathematics powered by [**MathJax**](https://www.mathjax.org/):
-
-$$ \sum_{n=1}^\infty 1/n^2 = \frac{\pi^2}{6} $$
-
-When \\(a \ne 0\\), there are two solutions to \\(ax^2 + bx + c = 0\\) and they are
-
-$$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
-
-## Code Snippet
-
-### Common
-
-```
-This is a common code snippet, without syntax highlight and line number.
+    val lastSavedValue: Flow<String> = dataStore.data
+        .map { preferences ->
+            preferences[BASE_KEY] ?: "default value"
+        }
+}
 ```
 
-### Specific Languages
+Let's simply show how we can write and use these values using to viewmodelScope in the viewModel.
 
-#### Console
+```kotlin
+  class BaseViewModel(
+    private val app: Application,
+    //repository
+  ) : ViewModel{
+      
+      var basePreferences = BasePreferences(app.applicationContext)
+      var dataStoreLiveData: LiveData<String> = MutableLiveData()
+      var baseValue :String = ""
+      
+      // we can write to value with the method. 
+      fun saveValue(val v : String){
+        viewModelScope.launch {
+            basePreferences.saveValue(v)
+        }
+      }
 
-```console
-$ date
-Sun Nov  3 15:11:12 CST 2019
+      // The method we created to observe the data.
+     // We can listen to our value in the activity or fragment class where we will use our view model.
+    fun getLiveData(){
+        viewModelScope.launch{
+          dataStoreLiveData = basePreferences.lastSavedValue()
+                      .asLiveData(viewModelScope.coroutineContext+Dispatchers.Default)
+        }
+    }
+    
+    // we can read to value with the function.
+    fun getValue(){
+        basePreferences.lastSavedValue()
+            .collect { value ->
+                baseValue = value
+        }
+    }
+    
+  }
+
 ```
 
+As I wrote in the commentline, we can listen to our livedata type variable in our activity or fragment class, where we'll use our viewmodel and the necessary actions according to the charge.
 
-#### Terminal
+Or we can collect and  read data directly.
 
-```terminal
-$ env |grep SHELL
-SHELL=/usr/local/bin/bash
-PYENV_SHELL=bash
-```
+---
 
-#### Ruby
+## Utilized Resources and Result
 
-```ruby
-def sum_eq_n?(arr, n)
-  return true if arr.empty? && n == 0
-  arr.product(arr).reject { |a,b| a == b }.any? { |a,b| a + b == n }
-end
-```
+- [Android Developer Blog](https://android-developers.googleblog.com/2020/09/prefer-storing-data-with-jetpack.html)
+- [Offical Docs](https://developer.android.com/topic/libraries/architecture/datastore)
+- [Pro Android Dev](https://proandroiddev.com/lets-explore-jetpack-datastore-in-android-621f3564b57)
 
-#### Shell
+As seen in our examples, it is advantageous to use the DataStore Coroutine and Flow structure. It is a more reliable, more useful solution than SharedPreferences to securely perform asecron processing in UI threats.
 
-```shell
-if [ $? -ne 0 ]; then
-    echo "The command was not successful.";
-    #do the needful / exit
-fi;
-```
-
-#### Liquid
-
-{% raw %}
-```liquid
-{% if product.title contains 'Pack' %}
-  This product's title contains the word Pack.
-{% endif %}
-```
-{% endraw %}
-
-#### HTML
-
-```html
-<div class="sidenav">
-  <a href="#contact">Contact</a>
-  <button class="dropdown-btn">Dropdown
-    <i class="fa fa-caret-down"></i>
-  </button>
-  <div class="dropdown-container">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
-  </div>
-  <a href="#contact">Search</a>
-</div>
-```
-
-**Horizontal Scrolling**
-
-```html
-<div class="panel-group">
-  <div class="panel panel-default">
-    <div class="panel-heading" id="{{ category_name }}">
-      <i class="far fa-folder"></i>
-      <p>This is a very long long long long long long long long long long long long long long long long long long long long long line.</p>
-      </a>
-    </div>
-  </div>
-</div>
-```
-
-
-## Reverse Footnote
-
-[^footnote]: The footnote source.
+See you in the next articles.
