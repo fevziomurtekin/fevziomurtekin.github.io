@@ -5,7 +5,7 @@ date: 2020-10-16 11:33:00 +0800
 categories: [Android, Development, Jetpack, Datastore]
 tags: [Android]
 math: true
-image: https://miro.medium.com/max/1273/1*9AiTGrsS8XxmG6yjPxlXyQ.png
+image: https://miro.medium.com/max/1200/1*lDGK7qz9h3xQP_IUoZxGaQ.png
 ---
 
 > This post is to The Turkish of this article is also available in **[Medium](https://medium.com/@fevziomurtekin/jetpack-datastore-nedir-neden-kullanmal%C4%B1y%C4%B1z-7be78764970b)**.

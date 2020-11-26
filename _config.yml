@@ -26,7 +26,10 @@ github:
   username: fevziomurtekin             # change to your github username
 
 twitter:
-  username: fevziomurtekin            # change to your twitter username
+  username: fevziomurtekin  # change to your twitter username
+
+linkedin:
+  username: fevziomurtekin
 
 social:
   name: fevziomurtekin                  # it will shows as the copyright owner in Footer
@@ -35,9 +38,10 @@ social:
     # The first element serves as the copyright owner's link
     - https://twitter.com/fevziomurtekin      # change to your twitter homepage
     - https://github.com/fevziomurtekin       # change to your github homepage
+    - https://www.linkedin.com/in/fevziomurtekin
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
+
 
 google_site_verification: google_meta_tag_verification # change to your verification string
 
@@ -101,7 +105,7 @@ kramdown:
 
 # DO NOT change this unless you're a Pro user on Jekyll and Web development,
 # or you think you're smart enough to change other relevant URLs within this template.
-permalink: /posts/:title/
+permalink: https://fevziomurtekin.me/posts/:title/
 
 collections:
   tabs:
