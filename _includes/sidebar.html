@@ -33,7 +33,7 @@
     <li class="nav-item d-flex justify-content-center {% if page.layout == 'home' %}active{% endif %}">
       <a href="{{ '/' | relative_url }}" class="nav-link d-flex justify-content-center align-items-center w-100">
         <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i>
-        <span>Anasayfa</span>
+        <span>ANASAYFA</span>
       </a>
     </li>
     <!-- the real tabs -->
@@ -41,7 +41,7 @@
     <li class="nav-item d-flex justify-content-center {% if tab.url == page.url %}active{% endif %}">
       <a href="{{ tab.url | relative_url }}" class="nav-link d-flex justify-content-center align-items-center w-100">
         <i class="fa-fw {{ tab.icon }} ml-xl-3 mr-xl-3 unloaded"></i>
-        <span>HAKKIMDA</span>
+        <span>{{ tab.title | upcase }}</span>
       </a>
     </li> <!-- .nav-item -->
     {% endfor %}
@@ -54,7 +54,7 @@
 
   {% if site.theme_mode == "dual" %}
   <span id="mode-toggle-wrapper">
-   ARSIV
+    {% include mode-toggle.html %}
   </span>
   <span class="icon-border"></span>
   {% endif %}

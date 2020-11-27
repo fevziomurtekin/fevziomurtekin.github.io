@@ -1,5 +1,5 @@
 ---
-title: Tags
+title: Etiketler
 icon: fas fa-tags
 order: 2
 

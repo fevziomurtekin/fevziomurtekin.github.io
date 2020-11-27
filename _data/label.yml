@@ -6,14 +6,14 @@
 
 
 panel:
-  lastmod: "Recent Update"
-  trending_tags: "Trending Tags"
-  toc: "Contents"
+  lastmod: "Son Güncelleme"
+  trending_tags: "Trend Etiketler"
+  toc: "İçerikler"
 
 post:
-  relate_posts: "Further Reading"
+  relate_posts: "Daha fazla oku"
   button:
-    next: Newer
-    previous: Older
+    next: Daha Yeni
+    previous: Daha Eski
 
-search_hint: "Search"   # text show on search bar
+search_hint: "Ara"   # text show on search bar

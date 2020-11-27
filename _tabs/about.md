@@ -1,5 +1,5 @@
 ---
-title: About
+title: Hakkımda
 icon: fas fa-info
 order: 4
 
