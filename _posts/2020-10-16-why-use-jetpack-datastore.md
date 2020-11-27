@@ -36,7 +36,7 @@ So why should we use this structure when there is SharedPreferences? Let's expla
 - **DataStore** is support error handling.
 - **DataStore** is support kotlin [kotlin-corutine](https://kotlinlang.org/docs/reference/coroutines/coroutines-guide.html) and [flow](https://kotlinlang.org/docs/reference/coroutines/flow.html) stuctures.
 
-[![1800x640](https://miro.medium.com/max/1042/1*ZuiiBUVP2LD1leAOAQ9wDg.png)](https://github.com/fevziomurtekin)
+[![1800x640](https://miro.medium.com/max/1042/1*ZuiiBUVP2LD1leAOAQ9wDg.png)]()
 
 If we look at the this in more detail, there are two different type of structure. These;
 
