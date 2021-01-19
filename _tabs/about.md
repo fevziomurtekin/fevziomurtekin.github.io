@@ -22,7 +22,7 @@ I’m mainly interested in Mobile Application Development, Kotlin, Flutter, Java
 
 Some of the applications and open source projects that I developed and when developing contribute are as follows;
 
-- **[HepsiEkspress](https://play.google.com/store/apps/details?id=com.pozitron.hepsiburada)**
+- **[Hepsi Express](https://play.google.com/store/apps/details?id=com.pozitron.hepsiburada)**
 - **[Bursada Bugun](https://play.google.com/store/apps/details?id=com.bursadabugun.android)**
 - **[Bkmkitap](https://play.google.com/store/apps/details?id=com.kuarkdijital.bkmkitap)**
 - **[Tofaşspor](https://play.google.com/store/apps/details?id=com.kuark.tofas)**
