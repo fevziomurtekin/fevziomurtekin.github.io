@@ -9,7 +9,7 @@ title: About
 
 ### Hi 👋
 
-My name is **Fevzi Ömür Tekin** and I'm a Android Developer at [Appcent](https://www.appcent.mobi/)
+My name is **Fevzi Ömür Tekin** and I'm a Android Developer at [Yemeksepeti](https://www.linkedin.com/company/yemeksepeti/mycompany/)
 
 I’m mainly interested in Mobile Application Development, Kotlin, Flutter, Java, Android Library, Book. For random bits follow me on Twitter/Instagram/Medium/Goodreads : **@fevziomurtekin**. For more info about my professional career, visit my [Linkedin](https://www.linkedin.com/in/fevziomurtekin) profile.
 
