@@ -1,22 +1,22 @@
-# Permalinks
-#
-# Use of `relative_permalinks` ensures post links from the index work properly.
-permalink:           pretty
-relative_permalinks: true
-
 # Setup
-title:               Lanyon
-tagline:             'A Jekyll theme'
-description:         'A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
-url:                 http://lanyon.getpoole.com
+title:               Fevzi Ömür Tekin website
+tagline:             'Mobile Application Developer, Sports Auidence'
+description:         'I’m mainly interested in Mobile Application Development, Kotlin, Flutter, Java, Android Library, Book. For random bits follow me on Twitter/Instagram/Medium/Goodreads : @fevziomurtekin. For more info about my professional career, visit my <a href= "https://www.linkedin.com/in/fevziomurtekin"> Linkedin profile</a>'
+url:                 https://fevziomurtekin.github.io
 baseurl:             ''
 paginate:            5
+permalink:           pretty
 
 # About/contact
 author:
-  name:              Mark Otto
-  url:               https://twitter.com/mdo
-  email:             markdotto@gmail.com
+  name:              Fevzi Ömür Tekin
+  url:               https://twitter.com/fevziomurtekin
+  email:             fevziomurtekin@gmail.com
+
+# Gems
+plugins:
+  - jekyll-paginate
 
 # Custom vars
-version:             1.0.0
+version:             1.1.0
+google_analytics_id: G-3C1ZZ55LK4
