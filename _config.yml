@@ -5,6 +5,7 @@ description:         'I’m mainly interested in Mobile Application Development,
 url:                 https://fevziomurtekin.github.io
 baseurl:             ''
 paginate:            5
+github.repo:         https://github.com/fevziomurtekin
 permalink:           pretty
 
 # About/contact
