@@ -264,6 +264,8 @@ So and now let's look at Gradle properties files. First of all, Gradle propertie
 
 For this articles, I tried to answer the questions, what is Gradle?, what are the advantages of Gradle? and how to use it in Android? So we'll look at Gradle in more detail in the next posts. See you!
 
+![](https://media.giphy.com/media/WS0NoLtNnq3zKMlPEi/giphy-downsized-large.gif)
+
 
 
 
