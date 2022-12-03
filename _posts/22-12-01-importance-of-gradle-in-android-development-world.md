@@ -8,12 +8,11 @@ tags: [Android]
 math: true
 image: https://www.linkpicture.com/q/Screenshot-2022-12-01-at-15-44-15-Gradle-User-Manual.png
 ---
-
-# Importance of Gradle in the Android development world
+![](https://miro.medium.com/max/1400/1*7GuebgEyhK_MmeepdHVfVw.png)
 
 Hi everyone, 
 
-After a long time, I want to start new article series about Gradle. In this article series, I will try to talk about Gradle tips, new Gradle technologies and Gradle optimizations. Before we talk about these, let's talk, about what is the matter of Gradle for the Android development world, how to use it, and why we need to use Gradle.
+After a long time, I want to start new article series about Gradle. In this article series, I will try to talk about Gradle tips, new Gradle technologies and Gradle optimizations. Before talking about these, let's talk, about what is the matter of Gradle for the Android development world, how to use it, and why we need to use Gradle.
 
 if you're ready, let's start!
 
