@@ -261,8 +261,7 @@ So and now let's look at Gradle properties files. First of all, Gradle propertie
 - **local.properties** configures local environment properties for build system, including the following: _ndk.dir_ (Path to the NDK. This property has been deprecated. Any downloaded versions of the NDK are installed in the ndk directory within the Android SDK directory.), _sdk.dir_(Path to the SDK), _cmake.dir_ (Path to CMAKE), _ndk.symlinkdir_ (In Android Studio 3.5 and higher, creates a symlink to the NDK that can be shorter than the installed NDK path.)
 
 ## Conclusion
-
-For this articles, I tried to answer the questions, what is Gradle?, what are the advantages of Gradle? and how to use it in Android? So we'll look at Gradle in more detail in the next posts. See you!
+For this article, I tried to answer the questions, what is Gradle?, what are the advantages of Gradle? and how to use it on Android. So we'll look at Gradle in more detail in the next posts. See you!
 
 ![](https://media.giphy.com/media/WS0NoLtNnq3zKMlPEi/giphy-downsized-large.gif)
 
