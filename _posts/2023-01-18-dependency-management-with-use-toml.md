@@ -50,7 +50,7 @@ If you have followed these points, we can move on to the step-by-step use of thi
 [versions]
 kotlin = "1.7.20"
 mockito = "4.3.1"
-gradlePlugins = "7.2.0" //We mentioned that it should be at least 7.2.0
+gradlePlugins = "7.2.0" # We mentioned that it should be at least 7.2.0
 ```
 
 2) Then, we can include these libraries which are declared version
