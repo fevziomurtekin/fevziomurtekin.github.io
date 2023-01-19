@@ -11,7 +11,7 @@ image: https://www.linkpicture.com/q/Twitter-post-1.png
 
 ![](https://www.linkpicture.com/q/Twitter-post-1.png)
 
-Hello everyone, In my previous article, I said that *"I want to start new article series about Gradle"*. And this article will be the second article of that series. In this article, I'll try to explain the new feature a.k.a *version catalog* which is developed by Gradle and providing to declare a conventional file. 
+Hello everyone, In my previous article, I said that *"I want to start new article series about Gradle"*. And this article will be the second article of that series. In this article, I'll explain the new feature a.k.a *version catalog* which is developed by Gradle and providing to declare a conventional file. 
 
 Firstly, let's start with what is TOML?
 
@@ -19,7 +19,7 @@ Firstly, let's start with what is TOML?
 ![](https://raw.githubusercontent.com/toml-lang/toml/main/logos/toml-200.png)
 
 According to its website, *TOML aims to be a minimal configuration file format that's easy to read due to obvious semantics. TOML is designed to map unambiguously to a hash table. TOML should be easy to parse into data structures in a wide variety of languages.*
-So thanks to its feature which is mapped to a hash table make it is easier to couple it with a Gradle script.
+So thanks to its feature which is mapped to a hash table make it is easier to match it with a Gradle script.
 
 Also, you can see this [link](https://github.com/toml-lang/toml) for more detail.
 
@@ -44,16 +44,16 @@ If you have followed these points, we can move on to the step-by-step use of thi
 
 ## Usage
 
-1) First, open the `libs.versions.toml` and then add the version of each library we would use.
+1) First, open the `libs.versions.toml` and then add the version of each library we use.
 
 ```toml
 [versions]
 kotlin = "1.7.20"
 mockito = "4.3.1"
-gradlePlugins = "7.2.0" # We mentioned that it should be at least 7.2.0
+gradlePlugins = "7.2.0" # it is mentioned that it should be at least 7.2.0
 ```
 
-2) Then, we can include these libraries which are declared version
+2) Then, it included these libraries which are declared version
 
 ```toml
 [libraries]
@@ -63,14 +63,14 @@ mockitoInline = { module = "org.mockito:mockito-inline", version.ref = "mockito"
 mockitoJupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
 ```
 
-3) Now as you can see examples above, We have three libraries that we can bundles.
+3) Now as you can see from the examples above, We have three libraries that we can bundle.
 
 ```toml
 [bundles]
 mockito = ["mockitoCore", "mockitoInline", "mockitoJupiter"]
 ```
 
-4) We can declare the plugins that we use, under to plugins sections.
+4) It is declared the plugins that we use, under to plugins sections.
 
 ```toml
 [plugins]
@@ -85,7 +85,7 @@ Let's look at the final form of our `libs.versions.toml` file.
 [versions]
 kotlin = "1.7.20"
 mockito = "4.3.1"
-gradlePlugins = "7.2.0" //We mentioned that it should be at least 7.2.0
+gradlePlugins = "7.2.0" # it is mentioned that it should be at least 7.2.0
 
 [libraries]
 kotlinBom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin" }
@@ -97,7 +97,7 @@ mockitoJupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "
 mockito = ["mockitoCore", "mockitoInline", "mockitoJupiter"]
 
 [plugins]
-android = { id = "com.android.application", version.ref = "gradlePlugins-agp" }
+android = { id = "com.android.application", version.ref = "gradlePlugins" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 ```
@@ -110,14 +110,14 @@ plugins {
     claspath(libs.plugins.kotlinAndroid)
     claspath(libs.plugins.kapt)
 }
+```
 
-...
+```kotlin
 implementation(libs.bundles.mockito)
-
 ```
 
 ## Conclusion
-In conclusion, we've talked about TOML language, how we use TOML with Gradle and how to create and use `libs.versions.toml`.
+In conclusion, we've talked about TOML language, how to use TOML with Gradle and how to create and use `libs.versions.toml`.
 I hope this blog post has been helpful to you. See you in the next posts.
 
 ![](https://media.giphy.com/media/10mzF0YmVmZNuw/giphy.gif)
