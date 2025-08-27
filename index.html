@@ -15,7 +15,9 @@ lang_tr: tr
   {% for post in paginator.posts %}
   <div class="post">
     <h1 class="post-title">
-      <a href="{{ post.url | absolute_url }}{% if current_lang == 'tr' %}?lang=tr{% endif %}">
+      <a href="{{ post.url | absolute_url }}{% if current_lang == 'tr' %}?lang=tr{% endif %}" 
+         data-title-tr="{{ post.title_tr }}" 
+         data-title-en="{{ post.title }}">
         {% if current_lang == 'tr' and post.title_tr %}
           {{ post.title_tr }}
         {% else %}
@@ -26,11 +28,15 @@ lang_tr: tr
 
     <span class="post-date">{{ post.date | date_to_string }}</span>
 
-    {% if current_lang == 'tr' and post.content_tr %}
-      {{ post.content_tr }}
-    {% else %}
-      {{ post.content }}
-    {% endif %}
+    <div class="post-content" 
+         data-content-tr="{% if post.content_tr %}{{ post.content_tr | strip_html | truncate: 200 }}{% endif %}"
+         data-content-en="{% if post.content %}{{ post.content | strip_html | truncate: 200 }}{% endif %}">
+      {% if current_lang == 'tr' and post.content_tr %}
+        {{ post.content_tr | strip_html | truncate: 200 }}
+      {% else %}
+        {{ post.content | strip_html | truncate: 200 }}
+      {% endif %}
+    </div>
   </div>
   {% endfor %}
 </div>
