@@ -11,6 +11,63 @@ lang_tr: tr
   {% assign current_lang = 'tr' %}
 {% endif %}
 
+<!-- Hero Header -->
+<div class="hero-header">
+  <div class="hero-content">
+    <h1 class="hero-title">
+      {% if current_lang == 'tr' %}
+        Fevzi Ömür Tekin
+      {% else %}
+        Fevzi Ömür Tekin
+      {% endif %}
+    </h1>
+    <p class="hero-subtitle">
+      {% if current_lang == 'tr' %}
+        Android Geliştirici & Teknoloji Tutkunu
+      {% else %}
+        Android Developer & Tech Enthusiast
+      {% endif %}
+    </p>
+    <p class="hero-description">
+      {% if current_lang == 'tr' %}
+        Mobil uygulama geliştirme, Kotlin, Flutter ve modern Android teknolojileri konusunda deneyimli. 
+        Sürekli öğrenmeye ve yeni teknolojileri keşfetmeye odaklanıyorum.
+      {% else %}
+        Experienced in mobile app development, Kotlin, Flutter, and modern Android technologies. 
+        Focused on continuous learning and exploring new technologies.
+      {% endif %}
+    </p>
+    <a href="{% if current_lang == 'tr' %}/about?lang=tr{% else %}/about{% endif %}" class="hero-cta">
+      {% if current_lang == 'tr' %}
+        Hakkımda
+      {% else %}
+        About Me
+      {% endif %}
+    </a>
+    
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-number">5+</span>
+        <span class="hero-stat-label">
+          {% if current_lang == 'tr' %}Yıl Deneyim{% else %}Years Experience{% endif %}
+        </span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">20+</span>
+        <span class="hero-stat-label">
+          {% if current_lang == 'tr' %}Proje{% else %}Projects{% endif %}
+        </span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">100+</span>
+        <span class="hero-stat-label">
+          {% if current_lang == 'tr' %}Blog Yazısı{% else %}Blog Posts{% endif %}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="language-switcher">
   <span class="lang-label">Language / Dil:</span>
   <a href="{{ page.url | append: '?lang=en' }}" class="lang-link {% if current_lang == 'en' %}active{% endif %}">EN</a>
