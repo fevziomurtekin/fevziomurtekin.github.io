@@ -13,8 +13,25 @@ function setLanguage(lang) {
   window.location.reload();
 }
 
-// Handle language switcher clicks (only on main page)
+// Handle header language switcher slider
 document.addEventListener('DOMContentLoaded', function() {
+  const headerLanguageToggle = document.getElementById('language-toggle');
+  
+  if (headerLanguageToggle) {
+    // Set initial state based on current language
+    const currentLang = getLanguageFromURL();
+    if (currentLang === 'tr') {
+      headerLanguageToggle.checked = true;
+    }
+    
+    // Handle slider toggle
+    headerLanguageToggle.addEventListener('change', function() {
+      const lang = this.checked ? 'tr' : 'en';
+      setLanguage(lang);
+    });
+  }
+  
+  // Handle main page language switcher clicks (only on main page)
   const langLinks = document.querySelectorAll('.language-switcher .lang-link');
   
   langLinks.forEach(link => {
