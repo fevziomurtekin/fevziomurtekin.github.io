@@ -1,0 +1,8 @@
+{% if page.lang and page.lang_tr %}
+<div class="language-switcher">
+  <span class="lang-label">Language / Dil:</span>
+  <a href="{{ page.url | append: '?lang=en' }}" class="lang-link {% if page.lang == 'en' or page.lang == nil %}active{% endif %}">EN</a>
+  <span class="lang-separator">|</span>
+  <a href="{{ page.url | append: '?lang=tr' }}" class="lang-link {% if page.lang == 'tr' %}active{% endif %}">TR</a>
+</div>
+{% endif %}
