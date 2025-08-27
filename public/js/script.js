@@ -31,17 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // Handle main page language switcher clicks (only on main page)
-  const langLinks = document.querySelectorAll('.language-switcher .lang-link');
-  
-  langLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const lang = this.textContent.toLowerCase();
-      setLanguage(lang);
-    });
-  });
-  
   // Set current language based on URL parameter
   const currentLang = getLanguageFromURL();
   if (currentLang === 'tr') {

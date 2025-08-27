@@ -68,13 +68,6 @@ lang_tr: tr
   </div>
 </div>
 
-<div class="language-switcher">
-  <span class="lang-label">Language / Dil:</span>
-  <a href="{{ page.url | append: '?lang=en' }}" class="lang-link {% if current_lang == 'en' %}active{% endif %}">EN</a>
-  <span class="lang-separator">|</span>
-  <a href="{{ page.url | append: '?lang=tr' }}" class="lang-link {% if current_lang == 'tr' %}active{% endif %}">TR</a>
-</div>
-
 <div class="posts">
   {% for post in paginator.posts %}
   <div class="post">
