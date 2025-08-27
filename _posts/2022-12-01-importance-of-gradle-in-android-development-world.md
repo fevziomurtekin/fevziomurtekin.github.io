@@ -1,12 +1,9 @@
 ---
 layout: post
-title: Importance of Gradle in the Android development world
-author: Fevzi Ömür Tekin
-date: 2022-12-01 04:00 +0800
-categories: [Android, Development, Gradle]
-tags: [Android]
-math: true
-image: https://www.linkpicture.com/q/Screenshot-2022-12-01-at-15-44-15-Gradle-User-Manual.png
+title: Importance of Gradle in Android Development World
+title_tr: Android Geliştirme Dünyasında Gradle'ın Önemi
+lang: en
+lang_tr: tr
 ---
 ![](https://miro.medium.com/max/1400/1*7GuebgEyhK_MmeepdHVfVw.png)
 

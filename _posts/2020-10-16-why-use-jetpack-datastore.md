@@ -1,11 +1,9 @@
 ---
-title: What is Jetpack Datastore? Why should we use Jetpack Datastore?
-author: Fevzi Ömür Tekin
-date: 2020-10-16 11:33:00 +0800
-categories: [Android, Development, Jetpack, Datastore]
-tags: [Android]
-math: true
-image: https://miro.medium.com/max/1200/1*lDGK7qz9h3xQP_IUoZxGaQ.png
+layout: post
+title: Why Use Jetpack DataStore?
+title_tr: Neden Jetpack DataStore Kullanmalıyız?
+lang: en
+lang_tr: tr
 ---
 
 > This post is to The Turkish of this article is also available in **[Medium](https://medium.com/@fevziomurtekin/jetpack-datastore-nedir-neden-kullanmal%C4%B1y%C4%B1z-7be78764970b)**.

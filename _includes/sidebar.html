@@ -8,6 +8,18 @@
     <p>{{ site.description }}</p>
   </div>
 
+  <!-- Language Switcher -->
+  <div class="sidebar-item language-switcher">
+    <p class="language-label">Language / Dil</p>
+    <div class="language-toggle">
+      <input type="checkbox" id="language-toggle" class="language-checkbox">
+      <label for="language-toggle" class="language-label-toggle">
+        <span class="lang-text lang-en">EN</span>
+        <span class="lang-text lang-tr">TR</span>
+      </label>
+    </div>
+  </div>
+
   <nav class="sidebar-nav">
     <a class="sidebar-nav-item{% if page.title == 'Home' %} active{% endif %}" href="{{ '/' | absolute_url }}">Home</a>
 

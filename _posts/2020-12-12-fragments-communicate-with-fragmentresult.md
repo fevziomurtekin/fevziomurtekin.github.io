@@ -1,6 +1,9 @@
 ---
 layout: post
-title: Communicate with Fragments with FragmentResult
+title: Fragments Communicate with FragmentResult
+title_tr: Fragment'lar FragmentResult ile Nasıl İletişim Kurar?
+lang: en
+lang_tr: tr
 ---
 
 Hello everyone,

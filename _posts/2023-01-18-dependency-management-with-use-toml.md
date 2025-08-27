@@ -1,12 +1,9 @@
 ---
 layout: post
-title: Dependency management with the use of TOML
-author: Fevzi Ömür Tekin
-date: 2023-01-18 11:00 +0800
-categories: [Android, Development, Gradle, TOML]
-tags: [Android]
-math: true
-image: https://www.linkpicture.com/q/Twitter-post-1.png
+title: Dependency Management with use.toml
+title_tr: use.toml ile Bağımlılık Yönetimi
+lang: en
+lang_tr: tr
 ---
 
 ![](https://www.linkpicture.com/q/Twitter-post-1.png)

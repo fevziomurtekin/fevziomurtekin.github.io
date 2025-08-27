@@ -1,6 +1,9 @@
 ---
 layout: post
 title: What is this Okhttp Interceptor?
+title_tr: Bu Okhttp Interceptor Nedir?
+lang: en
+lang_tr: tr
 ---
 
 ## What is this Okhttp Interceptor?
