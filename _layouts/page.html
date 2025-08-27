@@ -2,14 +2,12 @@
 layout: default
 ---
 
-{% assign current_lang = page.lang | default: 'en' %}
+{% assign current_lang = 'en' %}
 {% if page.url contains '?lang=tr' %}
   {% assign current_lang = 'tr' %}
 {% endif %}
 
 <div class="page">
-  {% include language-switcher.html %}
-  
   <h1 class="page-title">
     {% if current_lang == 'tr' and page.title_tr %}
       {{ page.title_tr }}

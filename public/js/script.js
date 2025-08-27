@@ -13,9 +13,9 @@ function setLanguage(lang) {
   window.location.reload();
 }
 
-// Handle language switcher clicks
+// Handle language switcher clicks (only on main page)
 document.addEventListener('DOMContentLoaded', function() {
-  const langLinks = document.querySelectorAll('.lang-link');
+  const langLinks = document.querySelectorAll('.language-switcher .lang-link');
   
   langLinks.forEach(link => {
     link.addEventListener('click', function(e) {
@@ -33,19 +33,3 @@ document.addEventListener('DOMContentLoaded', function() {
     document.documentElement.lang = 'en';
   }
 });
-
-(function(document) {
-  var toggle = document.querySelector('.sidebar-toggle');
-  var sidebar = document.querySelector('#sidebar');
-  var checkbox = document.querySelector('#sidebar-checkbox');
-
-  document.addEventListener('click', function(e) {
-    var target = e.target;
-
-    if(!checkbox.checked ||
-       sidebar.contains(target) ||
-       (target === checkbox || target === toggle)) return;
-
-    checkbox.checked = false;
-  }, false);
-})(document);

@@ -13,20 +13,10 @@
       <div class="masthead">
         <div class="container">
           <h3 class="masthead-title">
-            <a href="{{ site.baseurl }}/" title="{% if page.url contains '?lang=tr' %}Ana Sayfa{% else %}Home{% endif %}">
-              {% if page.url contains '?lang=tr' and site.title_tr %}
-                {{ site.title_tr }}
-              {% else %}
-                {{ site.title }}
-              {% endif %}
+            <a href="{{ site.baseurl }}/" title="Home">
+              {{ site.title }}
             </a>
-            <small>
-              {% if page.url contains '?lang=tr' and site.tagline_tr %}
-                {{ site.tagline_tr }}
-              {% else %}
-                {{ site.tagline }}
-              {% endif %}
-            </small>
+            <small>{{ site.tagline }}</small>
           </h3>
         </div>
       </div>

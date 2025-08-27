@@ -11,11 +11,18 @@ lang_tr: tr
   {% assign current_lang = 'tr' %}
 {% endif %}
 
+<div class="language-switcher">
+  <span class="lang-label">Language / Dil:</span>
+  <a href="{{ page.url | append: '?lang=en' }}" class="lang-link {% if current_lang == 'en' %}active{% endif %}">EN</a>
+  <span class="lang-separator">|</span>
+  <a href="{{ page.url | append: '?lang=tr' }}" class="lang-link {% if current_lang == 'tr' %}active{% endif %}">TR</a>
+</div>
+
 <div class="posts">
   {% for post in paginator.posts %}
   <div class="post">
     <h1 class="post-title">
-      <a href="{{ post.url | absolute_url }}">
+      <a href="{{ post.url | absolute_url }}{% if current_lang == 'tr' %}?lang=tr{% endif %}">
         {% if current_lang == 'tr' and post.title_tr %}
           {{ post.title_tr }}
         {% else %}
@@ -37,7 +44,7 @@ lang_tr: tr
 
 <div class="pagination">
   {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ paginator.next_page_path | absolute_url }}">
+    <a class="pagination-item older" href="{{ paginator.next_page_path | absolute_url }}{% if current_lang == 'tr' %}?lang=tr{% endif %}">
       {% if current_lang == 'tr' %}Eski{% else %}Older{% endif %}
     </a>
   {% else %}
@@ -47,11 +54,11 @@ lang_tr: tr
   {% endif %}
   {% if paginator.previous_page %}
     {% if paginator.page == 2 %}
-      <a class="pagination-item newer" href="{{ '/' | absolute_url }}">
+      <a class="pagination-item newer" href="{{ '/' | absolute_url }}{% if current_lang == 'tr' %}?lang=tr{% endif %}">
         {% if current_lang == 'tr' %}Yeni{% else %}Newer{% endif %}
       </a>
     {% else %}
-      <a class="pagination-item newer" href="{{ paginator.previous_page_path | absolute_url }}">
+      <a class="pagination-item newer" href="{{ paginator.previous_page_path | absolute_url }}{% if current_lang == 'tr' %}?lang=tr{% endif %}">
         {% if current_lang == 'tr' %}Yeni{% else %}Newer{% endif %}
       </a>
     {% endif %}
