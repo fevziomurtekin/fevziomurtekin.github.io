@@ -4,12 +4,98 @@ title: Why Use Jetpack DataStore?
 title_tr: Neden Jetpack DataStore Kullanmalıyız?
 lang: en
 lang_tr: tr
+content_tr: |
+  > Bu yazının Türkçesi **[Medium](https://medium.com/@fevziomurtekin/jetpack-datastore-nedir-neden-kullanmal%C4%B1y%C4%B1z-7be78764970b)**'da da mevcuttur.
+
+  ## Jetpack DataStore Nedir? Neden Jetpack DataStore Kullanmalıyız?
+
+  ---
+
+  Merhaba herkese,
+  Bu makalede, Android Jetpack bileşenlerinden biri olan DataStore yapısı hakkında konuşacağım. DataStore Preferences ile örnekler vererek kodda açıklayacağım.
+
+  Peki DataStore nedir, neden kullanmalıyız? Hakkında bilgi vererek başlayalım!
+
+  ---
+
+  ## DataStore Nedir?
+
+  <p>DataStore, SharedPreferences yerine Kotlin Coroutine ve Flow yapıları ile asenkron olarak yerel verilerimizi depolamak için kullanılan bir Jetpack bileşenidir.</p>
+
+  Peki SharedPreferences varken neden bu yapıyı kullanmalıyız? İki yapıyı karşılaştırarak açıklayalım.
+
+  ### SharedPreferences vs DataStore
+
+  - **DataStore** ve **SharedPreferences** her ikisi de Async API kullanır. DataStore hem yazma hem de okuma için kullanır, SharedPreferences ise sadece değişkenler değişirken dinlemek için kullanır.
+  - **DataStore** UI thread altında çalıştırmak güvenlidir. UI thread ile çalışmak ANR oluşmasını engeller.
+  - **DataStore** hata yönetimini destekler.
+  - **DataStore** kotlin [kotlin-corutine](https://kotlinlang.org/docs/reference/coroutines/coroutines-guide.html) ve [flow](https://kotlinlang.org/docs/reference/coroutines/flow.html) yapılarını destekler.
+
+  [![1800x640](https://miro.medium.com/max/1042/1*ZuiiBUVP2LD1leAOAQ9wDg.png)]()
+
+  Bunu daha detaylı incelersek, iki farklı türde yapı vardır. Bunlar;
+
+  * **Preferences DataStore**, bu tür verileri SharedPreferences gibi *key/value* çiftleri halinde saklar ancak herhangi bir tür güvenlik sağlamaz.
+  * **Proto DataStore** bu tür verileri *nesneler* olarak saklar,
+
+  Her iki türü kullanarak depolama sağlayabiliriz. Ancak Proto tip güvenliği sağlar. **Proto** kullanırken bir şema da tanımlarsınız.
+
+  Bu şemayı `src/main/proto/directory` altında tanımlamanız gerekir. Bu diyagram, kullanacağınız nesnelerin türlerini içerir.
+
+  Daha detaylı bilgi [burada](https://developer.android.com/topic/libraries/architecture/datastore) bulunabilir.
+
+  Şimdi kurulumunu ve kullanımını görelim.
+
+  ### DataStore Preferences Kurulumu ve Kullanımı
+
+  ```gradle
+  dependencies {
+    // Preferences DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0-alpha02"
+
+    // Proto DataStore
+    implementation "androidx.datastore:datastore-core:1.0.0-alpha02"
+  }
+  ```
+
+  `build.gradle` dosyamıza bağımlılıklarımızı dahil ederek DataStore kütüphanelerimizi projeye ekledik.
+
+  Öncelikle DataStore Preferences yapısında bir sınıf oluşturduk ve kullanacağımız veri yazma ve okuma fonksiyonlarını oluşturduk.
+
+  ```kotlin
+  class BasePreferences(private val context: Context) {
+
+      companion object{
+          val BASE_KEY = preferencesKey<String>(name = "key")
+      }
+
+      private val dataStore: DataStore<Preferences> = context.createDataStore(
+          name = "pref"
+      )
+
+      suspend fun saveValue(value: String){
+          dataStore.edit { preferences ->
+              preferences[BASE_KEY] = value
+          }
+      }
+
+      val lastSavedValue: Flow<String> = dataStore.data
+          .map { preferences ->
+              preferences[BASE_KEY] ?: "default value"
+          }
+  }
+  ```
+
+  Bu değerleri viewModel'de viewmodelScope kullanarak nasıl yazabileceğimizi ve kullanabileceğimizi basitçe gösterelim.
+
+  ```kotlin
+  ```
 ---
 
 > This post is to The Turkish of this article is also available in **[Medium](https://medium.com/@fevziomurtekin/jetpack-datastore-nedir-neden-kullanmal%C4%B1y%C4%B1z-7be78764970b)**.
 
 
-## What is Jetpack Datastore? Why should we use Jetpack Datastore?
+## What is Jetpack Datastore? Why should we use Jetpack DataStore?
 
 ---
 
@@ -98,41 +184,6 @@ class BasePreferences(private val context: Context) {
 Let's simply show how we can write and use these values using to viewmodelScope in the viewModel.
 
 ```kotlin
-  class BaseViewModel(
-    private val app: Application,
-    //repository
-  ) : ViewModel{
-
-      var basePreferences = BasePreferences(app.applicationContext)
-      var dataStoreLiveData: LiveData<String> = MutableLiveData()
-      var baseValue :String = ""
-
-      // we can write to value with the method.
-      fun saveValue(val v : String){
-        viewModelScope.launch {
-            basePreferences.saveValue(v)
-        }
-      }
-
-      // The method we created to observe the data.
-     // We can listen to our value in the activity or fragment class where we will use our view model.
-    fun getLiveData(){
-        viewModelScope.launch{
-          dataStoreLiveData = basePreferences.lastSavedValue()
-                      .asLiveData(viewModelScope.coroutineContext+Dispatchers.Default)
-        }
-    }
-
-    // we can read to value with the function.
-    fun getValue(){
-        basePreferences.lastSavedValue()
-            .collect { value ->
-                baseValue = value
-        }
-    }
-
-  }
-
 ```
 
 As I wrote in the commentline, we can listen to our livedata type variable in our activity or fragment class, where we'll use our viewmodel and the necessary actions according to the charge.

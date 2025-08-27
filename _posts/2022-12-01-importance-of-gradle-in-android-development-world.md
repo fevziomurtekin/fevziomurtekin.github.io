@@ -4,7 +4,100 @@ title: Importance of Gradle in Android Development World
 title_tr: Android Geliştirme Dünyasında Gradle'ın Önemi
 lang: en
 lang_tr: tr
+content_tr: |
+  ![](https://miro.medium.com/max/1400/1*7GuebgEyhK_MmeepdHVfVw.png)
+
+  Merhaba herkese,
+
+  Uzun bir aradan sonra, Gradle hakkında yeni makale serisi başlatmak istiyorum. Bu makale serisinde, Gradle ipuçları, yeni Gradle teknolojileri ve Gradle optimizasyonları hakkında konuşmaya çalışacağım. Bunlardan bahsetmeden önce, Gradle'ın Android geliştirme dünyası için neden önemli olduğunu, nasıl kullanıldığını ve neden Gradle kullanmamız gerektiğini konuşalım.
+
+  Hazırsanız, başlayalım!
+
+  ## Gradle Nedir?
+
+  Gradle, esneklik ve performansa odaklanmış açık kaynak bir build otomasyon aracıdır. Gradle build scriptini kullanmak için **Groovy** veya **Kotlin DSL** yazarız.
+
+  ## Neden Gradle Kullanmalıyız ve Avantajları Nelerdir?
+
+  Gradle kullanmamız gereken birkaç neden ve birkaç avantaj yazalım:
+
+  - **Yüksek performans**, gereksiz işlerden kaçınarak yüksek performans sağlar. Çünkü sadece yapılması gereken işleri çalıştırır. Ve Gradle, önceki build'lerden çıktıları yeniden kullanmak için çeşitli önbellekler kullanır.
+
+  - **JVM temeli**, Gradle JVM üzerinde çalışır. Bu, Java'ya aşina olan kullanıcılar için bir bonus, çünkü build mantığı standart Java API'lerini kullanabilir.
+
+  - **Konvansiyon**
+
+  - **Genişletilebilirlik**, çoğu build'in özel build mantığı gerektiren özel gereksinimleri vardır. Örneğin, flavors ve build types gibi birçok yeni build kavramı eklerler.
+
+  - **IDE desteği**, Gradle farklı IDE'ler tarafından desteklenir. Android Studio, IntelliJ IDEA, Eclipse, VSCode ve NetBean gibi.
+
+  - **İçgörü**, Build Scan ile, build hakkında sorunları tanımlamak için kullanabileceğiniz kapsamlı bilgi sağlar.
+
+  Gradle hakkında daha fazla detay için [bu linke](https://gradle.org/features) ulaşabilirsiniz.
+
+  Şimdi Android'de hem groovy hem de Kotlin DSL ile Gradle'ın temel kullanımını görelim.
+
+  ## Android'de Gradle'ın Temel Kullanımı
+
+  ![](https://media.giphy.com/media/llarwdtFqG63IlqUR1/giphy.gif)
+
+  > Android build sistemi, uygulama kaynaklarını ve kaynak kodunu derler ve test edebileceğiniz, dağıtabileceğiniz, imzalayabileceğiniz ve dağıtabileceğiniz APK'lar veya Android App Bundle'lar halinde paketler.
+
+  Bu noktada, Android Studio Gradle'a dayanır ve onu kullanır. Gradle, Android uygulamaları oluşturmaya özel birkaç özellik sağlar.
+
+  Gelişmiş bir build toolkit olarak, esnek, özel build yapılandırmaları tanımlamanıza izin verirken build sürecini otomatikleştirir ve yönetir. Her build yapılandırması, uygulamanızın tüm versiyonları için ortak olan parçaları yeniden kullanırken kendi kod ve kaynak setini tanımlayabilir. Android Gradle eklentisi, Android uygulamaları oluşturmaya ve test etmeye özel süreçler ve yapılandırılabilir ayarlar sağlamak için build toolkit ile çalışır.
+
+  Gradle ile *build types*, *product flavors*, *build variants*, *manifest entries*, *add/remove dependencies*, *signing*, *code and resource shrinking* ve *multiple APK support* kullanabilir ve yönetebilirsiniz.
+
+  Bu düzenlemeleri sonraki makalelerde daha detaylı inceleyeceğiz. Ancak şimdi ana Gradle dosyalarını gözden geçirelim.
+
+  Bir Android projesi bir kez oluşturulduğunda, bu projede üç farklı Gradle dosyası ve iki farklı properties dosyası olacak. Bu Gradle dosyaları *settings.gradle*, *build.gradle* (üst seviyede), *build.gradle* ve bu Gradle properties dosyaları *gradle.properties* ve *local.properties*
+
+  - **settings.gradle**, *(not: groovy için settings.gradle/ kotlin script için settings.gradle.kts)* root proje dizininde bulunur. Bu settings dosyası ile proje seviyesi repository ayarları tanımlanabilir ve Gradle'a hangi uygulamaların build edilirken dahil edilmesi gerektiği bildirilir. Özellikle, bu özellik çok modüllü uygulamalar için önemlidir.
+
+  Burada nasıl kullanılacağını görelim.
+
+  ```kotlin
+  pluginManagement {
+
+      /**
+       * pluginManagement {repositories {...}} bloğu, Gradle'ın Gradle eklentilerini
+       * aramak veya indirmek için kullandığı repository'leri yapılandırır ve
+       * bunların transitive bağımlılıkları. Gradle, JCenter, Maven Central ve Ivy gibi
+       * uzak repository'ler için önceden yapılandırılmış destek sağlar. Ayrıca yerel
+       * repository'leri kullanabilir veya kendi uzak repository'lerinizi tanımlayabilirsiniz.
+       * Aşağıdaki kod, Gradle'ın bağımlılıklarını araması gereken repository'ler olarak
+       * Gradle Plugin Portal, Google'ın Maven repository'si ve Maven Central Repository'yi tanımlar.
+       */
+
+      repositories {
+          gradlePluginPortal()
+          google()
+          mavenCentral()
+      }
+  }
+  dependencyResolutionManagement {
+
+      /**
+       * dependencyResolutionManagement {repositories {...}} bloğu,
+       * projenizdeki tüm modüller tarafından kullanılan repository'leri ve bağımlılıkları
+       * yapılandırdığınız yerdir, örneğin uygulamanızı oluşturmak için kullandığınız
+       * kütüphaneler gibi. Ancak, modül özel bağımlılıkları her modül seviyesi
+       * build.gradle dosyasında yapılandırmalısınız. Yeni projeler için, Android Studio
+       * varsayılan olarak Google'ın Maven repository'si ve Maven Central Repository'yi
+       * dahil eder, ancak herhangi bir bağımlılık yapılandırmaz (bazıları gerektiren
+       * bir şablon seçmediğiniz sürece).
+       */
+
+      repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+      repositories {
+          google()
+          mavenCentral()
+      }
+  }
+  ```
 ---
+
 ![](https://miro.medium.com/max/1400/1*7GuebgEyhK_MmeepdHVfVw.png)
 
 Hi everyone, 

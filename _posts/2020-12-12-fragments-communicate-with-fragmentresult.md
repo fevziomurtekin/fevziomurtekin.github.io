@@ -4,6 +4,100 @@ title: Fragments Communicate with FragmentResult
 title_tr: Fragment'lar FragmentResult ile Nasıl İletişim Kurar?
 lang: en
 lang_tr: tr
+content_tr: |
+  Merhaba herkese,
+
+  Bu makalede, fragment'lar arasında iletişim kurmamızı sağlayan `FragmentResult` hakkında konuşacağım.
+
+  FragmentResult nedir, Hangi durumlarda kullanmalıyız, Nasıl kullanılır gibi soruları cevaplamaya çalışacağım.
+
+  `FragmentResult`'ın ne olduğunu açıklayarak başlayalım.
+
+  ## FragmentResult Nedir?
+
+  Android'in son güncellemelerde hedef (`setTargetFragment()` / `getTargetFragment()`) desteklemediğini duyduk.
+
+  Bu yapıların alternatifi olarak birkaç çözüm önerildi. Bunlardan biri FragmentResult yapılarıdır.
+
+  ## Hangi Durumlarda FragmentResult Kullanmalıyız?
+
+  İki fragment arasında iletişim kuracaksınız, ancak viewmodel veya arguments kullanmak istemiyorsunuz, o zaman `fragmentresult` sizin için.
+
+  Daha detaylı bir örnek vereyim, yapacağım senaryoda olduğu gibi durumlarda da kullanabilir ve mini bir uygulamada kullanabilirsiniz.
+
+  > **Senaryo**: Navigation Component kullanan bir uygulamamız var. Bu uygulamada, bir trailer'da dialog açmak ve dialog'dan gelen sonuca göre trailer'ı değiştirmek istiyoruz.
+
+  ## FragmentResult Kullanımı
+
+  Öncelikle, uygulamada navigation component kullanacağımı belirttim.
+
+  Kullandığım Graph yapısı;
+
+  ```xml
+  <?xml version="1.0" encoding="utf-8"?>
+  <navigation xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:id="@+id/nav_graph.xml"
+      app:startDestination="@id/homeFragment">
+
+      <fragment
+          android:id="@+id/homeFragment"
+          android:name="com.fevziomurtekin.myapplication.HomeFragment"
+          android:label="fragment_home"
+          tools:layout="@layout/fragment_home" />
+
+      <dialog
+          android:id="@+id/homeDialog"
+          android:name="com.fevziomurtekin.myapplication.HomeDialog"
+          android:label="HomeDialog" />
+  </navigation>
+  ```
+
+  Gördüğünüz gibi çok basit kurdum. Sadece bir fragment ve dialog'dan oluşuyor.
+
+  HomeFragment hakkında konuşursak;
+
+  ```kotlin
+  class HomeFragment : Fragment() {
+
+      private var tvResult: TextView? = null
+      private var btnShowDialog: Button? = null
+
+      override fun onCreateView(
+          inflater: LayoutInflater,
+          container: ViewGroup?,
+          savedInstanceState: Bundle?
+      ): View? = inflater.inflate(R.layout.fragment_home,container,false)
+
+
+      override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+          super.onViewCreated(view, savedInstanceState)
+
+          tvResult = view.findViewById(R.id.tv_result)
+          btnShowDialog = view.findViewById(R.id.btn_show_dialog)
+
+          // bu sonucu dinler.
+          parentFragmentManager.setFragmentResultListener(
+              REQUEST_KEY,
+              this,
+              { key, data ->
+                  if(key == REQUEST_KEY){
+                      val result = data.getBoolean("data").let { isAccept->
+                          if(isAccept) "Accepted" else "Rejected"
+                      }
+                      tvResult?.text = result
+                  }
+              }
+          )
+
+          // bottom dialog göster
+          btnShowDialog?.setOnClickListener {
+              findNavController().navigate(R.id.homeDialog)
+          }
+
+      }
+  ```
 ---
 
 Hello everyone,

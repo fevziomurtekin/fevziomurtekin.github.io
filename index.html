@@ -1,37 +1,63 @@
 ---
 layout: default
 title: Home
+title_tr: Ana Sayfa
+lang: en
+lang_tr: tr
 ---
+
+{% assign current_lang = 'en' %}
+{% if page.url contains '?lang=tr' %}
+  {% assign current_lang = 'tr' %}
+{% endif %}
 
 <div class="posts">
   {% for post in paginator.posts %}
   <div class="post">
     <h1 class="post-title">
       <a href="{{ post.url | absolute_url }}">
-        {{ post.title }}
+        {% if current_lang == 'tr' and post.title_tr %}
+          {{ post.title_tr }}
+        {% else %}
+          {{ post.title }}
+        {% endif %}
       </a>
     </h1>
 
     <span class="post-date">{{ post.date | date_to_string }}</span>
 
-    {{ post.content }}
+    {% if current_lang == 'tr' and post.content_tr %}
+      {{ post.content_tr }}
+    {% else %}
+      {{ post.content }}
+    {% endif %}
   </div>
   {% endfor %}
 </div>
 
 <div class="pagination">
   {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ paginator.next_page_path | absolute_url }}">Older</a>
+    <a class="pagination-item older" href="{{ paginator.next_page_path | absolute_url }}">
+      {% if current_lang == 'tr' %}Eski{% else %}Older{% endif %}
+    </a>
   {% else %}
-    <span class="pagination-item older">Older</span>
+    <span class="pagination-item older">
+      {% if current_lang == 'tr' %}Eski{% else %}Older{% endif %}
+    </span>
   {% endif %}
   {% if paginator.previous_page %}
     {% if paginator.page == 2 %}
-      <a class="pagination-item newer" href="{{ '/' | absolute_url }}">Newer</a>
+      <a class="pagination-item newer" href="{{ '/' | absolute_url }}">
+        {% if current_lang == 'tr' %}Yeni{% else %}Newer{% endif %}
+      </a>
     {% else %}
-      <a class="pagination-item newer" href="{{ paginator.previous_page_path | absolute_url }}">Newer</a>
+      <a class="pagination-item newer" href="{{ paginator.previous_page_path | absolute_url }}">
+        {% if current_lang == 'tr' %}Yeni{% else %}Newer{% endif %}
+      </a>
     {% endif %}
   {% else %}
-    <span class="pagination-item newer">Newer</span>
+    <span class="pagination-item newer">
+      {% if current_lang == 'tr' %}Yeni{% else %}Newer{% endif %}
+    </span>
   {% endif %}
 </div>

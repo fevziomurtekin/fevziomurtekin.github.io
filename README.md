@@ -1,134 +1,121 @@
-# Lanyon
+# Fevzi Ömür Tekin - Personal Blog
 
-Lanyon is an unassuming [Jekyll](http://jekyllrb.com) theme that places content first by tucking away navigation in a hidden drawer. It's based on [Poole](http://getpoole.com), the Jekyll butler.
+Bu, Android geliştirici Fevzi Ömür Tekin'in kişisel blog sitesidir. Blog, hem İngilizce hem de Türkçe dillerinde içerik sunar.
 
-![Lanyon](https://f.cloud.github.com/assets/98681/1825266/be03f014-71b0-11e3-9539-876e61530e24.png)
-![Lanyon with open sidebar](https://f.cloud.github.com/assets/98681/1825267/be04a914-71b0-11e3-966f-8afe9894c729.png)
+This is the personal blog site of Android developer Fevzi Ömür Tekin. The blog provides content in both English and Turkish languages.
 
+## 🌍 Bilingual Features / Çift Dilli Özellikler
 
-## Contents
+### Language Switching / Dil Değiştirme
+- **EN/TR** dil seçici her sayfada mevcuttur
+- URL parametresi ile dil değiştirme (`?lang=tr` veya `?lang=en`)
+- Otomatik dil algılama ve içerik gösterimi
 
-- [Usage](#usage)
-- [Options](#options)
-  - [Sidebar menu](#sidebar-menu)
-  - [Themes](#themes)
-  - [Reverse layout](#reverse-layout)
-- [Development](#development)
-- [Author](#author)
-- [License](#license)
+### Content Structure / İçerik Yapısı
+Her blog yazısı ve sayfa için:
+- `title`: İngilizce başlık
+- `title_tr`: Türkçe başlık
+- `lang`: Varsayılan dil (en)
+- `lang_tr`: Türkçe dil kodu (tr)
+- `content_tr`: Türkçe içerik (opsiyonel)
 
-
-## Usage
-
-Lanyon is a theme built on top of [Poole](https://github.com/poole/poole), which provides a fully furnished Jekyll setup—just download and start the Jekyll server. See [the Poole usage guidelines](https://github.com/poole/poole#usage) for how to install and use Jekyll.
-
-
-## Options
-
-Lanyon includes some customizable options, typically applied via classes on the `<body>` element.
-
-
-### Sidebar menu
-
-Create a list of nav links in the sidebar by assigning each Jekyll page the correct layout in the page's [front-matter](http://jekyllrb.com/docs/frontmatter/).
-
-```
+### Example Front Matter / Örnek Front Matter
+```yaml
 ---
-layout: page
-title: About
+layout: post
+title: Dependency Management with use.toml
+title_tr: use.toml ile Bağımlılık Yönetimi
+lang: en
+lang_tr: tr
+content_tr: |
+  Türkçe içerik buraya...
 ---
 ```
 
-**Why require a specific layout?** Jekyll will return *all* pages, including the `atom.xml`, and with an alphabetical sort order. To ensure the first link is *Home*, we exclude the `index.html` page from this list by specifying the `page` layout.
+## 🚀 Getting Started / Başlangıç
 
+### Prerequisites / Gereksinimler
+- Ruby 2.4.0 veya üzeri
+- Jekyll 4.0 veya üzeri
+- Bundler
 
-### Themes
+### Installation / Kurulum
+```bash
+# Repository'yi klonlayın
+git clone https://github.com/fevziomurtekin/fevziomurtekin.github.io.git
 
-Lanyon ships with eight optional themes based on the [base16 color scheme](https://github.com/chriskempson/base16). Apply a theme to change the color scheme (mostly applies to sidebar and links).
+# Dizine gidin
+cd fevziomurtekin.github.io
 
-![Lanyon with red theme](https://f.cloud.github.com/assets/98681/1825270/be065110-71b0-11e3-9ed8-9b8de753a4af.png)
-![Lanyon with red theme and open sidebar](https://f.cloud.github.com/assets/98681/1825269/be05ec20-71b0-11e3-91ea-a9138ef07186.png)
+# Bağımlılıkları yükleyin
+bundle install
 
-There are eight themes available at this time.
-
-![Available theme classes](https://f.cloud.github.com/assets/98681/1817044/e5b0ec06-6f68-11e3-83d7-acd1942797a1.png)
-
-To use a theme, add any one of the available theme classes to the `<body>` element in the `default.html` layout, like so:
-
-```html
-<body class="theme-base-08">
-  ...
-</body>
+# Yerel sunucuyu başlatın
+bundle exec jekyll serve
 ```
 
-To create your own theme, look to the Themes section of [included CSS file](https://github.com/poole/lanyon/blob/master/public/css/lanyon.css). Copy any existing theme (they're only a few lines of CSS), rename it, and change the provided colors.
+### Local Development / Yerel Geliştirme
+```bash
+# Jekyll sunucusunu başlatın
+bundle exec jekyll serve
 
-
-### Reverse layout
-
-![Lanyon with reverse layout](https://f.cloud.github.com/assets/98681/1825265/be03f2e4-71b0-11e3-89f1-360705524495.png)
-![Lanyon with reverse layout and open sidebar](https://f.cloud.github.com/assets/98681/1825268/be056174-71b0-11e3-88c8-5055bca4307f.png)
-
-Reverse the page orientation with a single class.
-
-```html
-<body class="layout-reverse">
-  ...
-</body>
+# Tarayıcıda açın
+open http://localhost:4000
 ```
 
+## 📝 Adding New Content / Yeni İçerik Ekleme
 
-### Sidebar overlay instead of push
+### New Blog Post / Yeni Blog Yazısı
+1. `_posts/` dizininde yeni markdown dosyası oluşturun
+2. Front matter'a dil bilgilerini ekleyin
+3. Hem İngilizce hem Türkçe içerik ekleyin
 
-Make the sidebar overlap the viewport content with a single class:
+### New Page / Yeni Sayfa
+1. Root dizinde yeni markdown dosyası oluşturun
+2. `layout: page` kullanın
+3. Dil bilgilerini ekleyin
 
-```html
-<body class="sidebar-overlay">
-  ...
-</body>
-```
+## 🎨 Customization / Özelleştirme
 
-This will keep the content stationary and slide in the sidebar over the side content. It also adds a `box-shadow` based outline to the toggle for contrast against backgrounds, as well as a `box-shadow` on the sidebar for depth.
+### Styling / Stil
+- CSS dosyaları: `public/css/`
+- Ana stil: `lanyon.css`
+- Dil seçici stilleri mevcuttur
 
-It's also available for a reversed layout when you add both classes:
+### Layouts / Düzenler
+- `_layouts/default.html`: Ana düzen
+- `_layouts/post.html`: Blog yazısı düzeni
+- `_layouts/page.html`: Sayfa düzeni
 
-```html
-<body class="layout-reverse sidebar-overlay">
-  ...
-</body>
-```
+## 📚 Available Posts / Mevcut Yazılar
 
-### Sidebar open on page load
+- **2023-01-18**: Dependency Management with use.toml
+- **2022-12-01**: Importance of Gradle in Android Development World
+- **2020-12-12**: Fragments Communicate with FragmentResult
+- **2020-10-16**: Why Use Jetpack DataStore?
+- **2020-07-15**: What is this Okhttp Interceptor?
 
-Show an open sidebar on page load by modifying the `<input>` tag within the `sidebar.html` layout to add the `checked` boolean attribute:
+## 🔧 Technical Details / Teknik Detaylar
 
-```html
-<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" checked>
-```
+### Jekyll Configuration
+- Çoklu dil desteği
+- Otomatik içerik filtreleme
+- URL tabanlı dil değiştirme
 
-Using Liquid you can also conditionally show the sidebar open on a per-page basis. For example, here's how you could have it open on the homepage only:
+### JavaScript Features
+- Dil değiştirme işlevselliği
+- URL parametresi yönetimi
+- Sayfa yenileme ile dil değişimi
 
-```html
-<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" {% if page.title =="Home" %}checked{% endif %}>
-```
+## 📞 Contact / İletişim
 
-## Development
+- **Email**: fevziomurtekin@gmail.com
+- **Twitter**: [@fevziomurtekin](https://twitter.com/fevziomurtekin)
+- **LinkedIn**: [fevziomurtekin](https://www.linkedin.com/in/fevziomurtekin)
+- **GitHub**: [fevziomurtekin](https://github.com/fevziomurtekin)
 
-Lanyon has two branches, but only one is used for active development.
+## 📄 License / Lisans
 
-- `master` for development.  **All pull requests should be to submitted against `master`.**
-- `gh-pages` for our hosted site, which includes our analytics tracking code. **Please avoid using this branch.**
+Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için `LICENSE.md` dosyasına bakın.
 
-
-## Author
-
-**Mark Otto**
-- <https://github.com/mdo>
-- <https://twitter.com/mdo>
-
-
-## License
-
-Open sourced under the [MIT license](LICENSE.md).
-
-<3
+This project is licensed under the MIT License. See the `LICENSE.md` file for details.

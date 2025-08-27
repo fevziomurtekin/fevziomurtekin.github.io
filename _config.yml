@@ -1,11 +1,19 @@
 # Setup
 title:               Fevzi Ömür Tekin
+title_tr:            Fevzi Ömür Tekin
 tagline:             'Android developer, book reader, sports audience'
-description:         'I’m mainly interested in Mobile Application Development, Kotlin, Flutter, Java, Android Library, Book. For random bits follow me on Twitter/Instagram/Medium/Goodreads : @fevziomurtekin. For more info about my professional career, visit my <a href= "https://www.linkedin.com/in/fevziomurtekin"> Linkedin profile</a>'
+tagline_tr:          'Android geliştirici, kitap okuyucu, spor izleyicisi'
+description:         'I'm mainly interested in Mobile Application Development, Kotlin, Flutter, Java, Android Library, Book. For random bits follow me on Twitter/Instagram/Medium/Goodreads : @fevziomurtekin. For more info about my professional career, visit my <a href= "https://www.linkedin.com/in/fevziomurtekin"> Linkedin profile</a>'
+description_tr:      'Mobil Uygulama Geliştirme, Kotlin, Flutter, Java, Android Kütüphanesi ve Kitap konularına ilgi duyuyorum. Rastgele paylaşımlar için Twitter/Instagram/Medium/Goodreads: **@fevziomurtekin** takip edin. Profesyonel kariyerim hakkında daha fazla bilgi için [Linkedin](https://www.linkedin.com/in/fevziomurtekin) profilimi ziyaret edin.'
 url:                 https://fevziomurtekin.github.io
 baseurl:             ''
 paginate:            5
 permalink:           pretty
+
+# Language settings
+languages: ["en", "tr"]
+default_lang: "en"
+exclude_from_localization: ["assets", "images", "js", "css"]
 
 # About/contact
 author:

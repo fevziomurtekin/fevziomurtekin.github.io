@@ -2,21 +2,44 @@
 layout: default
 ---
 
+{% assign current_lang = page.lang | default: 'en' %}
+{% if page.url contains '?lang=tr' %}
+  {% assign current_lang = 'tr' %}
+{% endif %}
+
 <div class="post">
-  <h1 class="post-title">{{ page.title }}</h1>
+  {% include language-switcher.html %}
+  
+  <h1 class="post-title">
+    {% if current_lang == 'tr' and page.title_tr %}
+      {{ page.title_tr }}
+    {% else %}
+      {{ page.title }}
+    {% endif %}
+  </h1>
+  
   <span class="post-date">{{ page.date | date_to_string }}</span>
-  {{ content }}
+  
+  {% if current_lang == 'tr' and page.content_tr %}
+    {{ page.content_tr }}
+  {% else %}
+    {{ content }}
+  {% endif %}
 </div>
 
 {% if site.related_posts.size >= 1 %}
 <div class="related">
-  <h2>Related posts</h2>
+  <h2>{% if current_lang == 'tr' %}İlgili Yazılar{% else %}Related posts{% endif %}</h2>
   <ul class="related-posts">
     {% for post in site.related_posts limit:3 %}
       <li>
         <h3>
           <a href="{{ site.baseurl }}{{ post.url }}">
-            {{ post.title }}
+            {% if current_lang == 'tr' and post.title_tr %}
+              {{ post.title_tr }}
+            {% else %}
+              {{ post.title }}
+            {% endif %}
             <small>{{ post.date | date_to_string }}</small>
           </a>
         </h3>

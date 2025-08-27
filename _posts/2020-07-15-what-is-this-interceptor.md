@@ -4,6 +4,68 @@ title: What is this Okhttp Interceptor?
 title_tr: Bu Okhttp Interceptor Nedir?
 lang: en
 lang_tr: tr
+content_tr: |
+  ## Bu Okhttp Interceptor Nedir?
+
+  Temel olarak, **Interceptor'lar** havaalanındaki güvenlik görevlileri gibidir. Geçişimizi karar verir ve durdurur.
+
+  İki farklı görevi vardır. Bunlar;
+
+  * **Interceptor** kullanarak bir ağ çağrısı için log kaydı yapmak için kullanılır.
+  * Ağ çağrılarını önbelleğe almak için kullanılır.
+
+  İki farklı interceptor vardır.
+
+  * **Application Interceptor'lar** bu interceptor'lar Application kodu ve OkHttp Core Library arasına eklenir. `addInterceptor()` ile kullanırız.
+  * **Network Interceptor**, bu interceptor'lar OkHttp Core Library ve Server arasına eklenir. Bunları OkHttpClient'a `addNetworkInterceptor()` kullanarak ekleyebiliriz.
+
+  ## OkHttp'ta Interceptor Nasıl Eklenir?
+
+  Bunlar OkHttp'ta Interceptor'a eklenir.
+
+  ```kotlin
+  fun myHttpClient(): OkHttpClient {
+      val builder = OkHttpClient().newBuilder()
+          .addInterceptor(/*bizim interceptor'ımız*/)
+      return builder.build()
+  }
+  ```
+
+  Kendi interceptor'ımızı oluşturursak, aşağıdaki kod gibi yapılır.
+
+  ```kotlin
+  class ErrorInterceptor : Interceptor {
+      override fun intercept(chain: Interceptor.Chain): Response {
+
+          val request: Request = chain.request()
+          val response = chain.proceed(request)
+          when (response.code()) {
+              400 -> {
+                  //Bad Request Hata Mesajını Göster
+              }
+              401 -> {
+                  //Unauthorized Hata Mesajını Göster
+              }
+
+              403 -> {
+                  //Forbidden Mesajını Göster
+              }
+
+              404 -> {
+                  //NotFound Mesajını Göster
+              }
+
+              // ... ve böyle devam eder
+
+          }
+          return response
+      }
+  }
+  ```
+
+  Kodda anlaşıldığı gibi, dönen response'a göre gerekli log kaydını yaparız.
+
+  Bu makale umarım size yardımcı olur. Sonraki makalelerde görüşürüz.
 ---
 
 ## What is this Okhttp Interceptor?
